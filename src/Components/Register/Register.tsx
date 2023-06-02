@@ -39,7 +39,7 @@ const Register: React.FC = () => {
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Imie:</label>
                     <input
                         type="text"
                         className="form-control"
@@ -63,7 +63,7 @@ const Register: React.FC = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Choose a plan:</label>
+                    <label>Wybierz swój plan:</label>
                     <div className="form-check">
                         <input
                             type="radio"
@@ -104,7 +104,7 @@ const Register: React.FC = () => {
                         </label>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Załóż konto</button>
             </form>
         </div>
     );

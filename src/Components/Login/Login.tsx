@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="container">
-      <h2>Login</h2>
+      <h2>Zaloguj się</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Hasło:</label>
           <input
             type="password"
             className="form-control"
@@ -47,8 +48,10 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Zaloguj</button>
       </form>
+      <NavLink to="/register">Rejestracja</NavLink>
+      <NavLink to="/forgot-password">Reset hasła</NavLink>
     </div>
   );
 };

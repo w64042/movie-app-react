@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
     return (
@@ -8,13 +8,13 @@ export const Header = () => {
                 <img src="#" alt="App logo" className="logo" />
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                    <NavLink to="/">Strona główna</NavLink>
                     </li>
                     <li>
-                        <Link to="/about">My account</Link>
+                        <NavLink to="/my-account">Moje konto</NavLink>
                     </li>
                     <li>
-                        <Link to="/register">Register</Link>
+                        <NavLink to="/add-list">Dodaj listę</NavLink>
                     </li>
                 </ul>
             </nav>
