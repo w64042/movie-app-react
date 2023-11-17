@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     <div className="container">
       <h2>Zaloguj się</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group mt-4">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -36,7 +36,7 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group mt-2">
           <label htmlFor="password">Hasło:</label>
           <input
             type="password"
@@ -48,10 +48,14 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Zaloguj</button>
+        <button type="submit" className="btn btn-primary my-4">Zaloguj</button>
       </form>
-      <NavLink to="/register">Rejestracja</NavLink>
-      <NavLink to="/forgot-password">Reset hasła</NavLink>
+      <div>
+        <NavLink to="/register">Rejestracja</NavLink>
+      </div>
+      <div>
+        <NavLink to="/forgot-password">Reset hasła</NavLink>
+      </div>
     </div>
   );
 };

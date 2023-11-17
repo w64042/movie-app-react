@@ -1,0 +1,13 @@
+.App {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: $padding-medium;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    min-height: 90vh;
+}
