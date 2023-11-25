@@ -41,6 +41,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
+Login and register logic will be a bit based on:
+[React Query, Context API, Axios Interceptors JWT Auth](https://codevoweb.com/react-query-context-api-axios-interceptors-jwt-auth)
+
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

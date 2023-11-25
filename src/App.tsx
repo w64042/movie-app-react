@@ -1,16 +1,17 @@
-import React from 'react';
-import './App.css';
-// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-// import { Header } from './Components/Menu/Header';
-import Login from './Components/Login/Login';
+import { CssBaseline } from '@mui/material';
+import { useRoutes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import routes from './router';
+
 function App() {
+  const content = useRoutes(routes);
   return (
-    <div className="App">
-      {/* <Router>
-        <Header />
-      </Router> */}
-      <Login/>
-    </div>
+    <>
+      <CssBaseline />
+      <ToastContainer />
+      {content}
+    </>
   );
 }
 
