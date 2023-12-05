@@ -1,4 +1,5 @@
 export interface IUser {
+  access_token: string;
   name: string;
   email: string;
   role: string;
@@ -21,6 +22,7 @@ export interface ILoginResponse {
 }
 
 export interface IUserResponse {
+  // do zmiany
   status: string;
   data: {
     user: IUser;

@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <Container
       maxWidth={false}
-      sx={{ backgroundColor: '#2363eb', minHeight: '100vh', pt: '5rem' }}
+      sx={{ backgroundColor: '#1b1b1b', minHeight: '100vh', pt: '5rem' }}
     >
       <Box
         maxWidth='md'
@@ -20,9 +20,9 @@ const HomePage = () => {
         <Typography
           variant='h2'
           component='h1'
-          sx={{ color: '#1f1e1e', fontWeight: 500 }}
+          sx={{ color: '#222', fontWeight: 500 }}
         >
-          Strona główna
+          Co dzisiaj robimy?
         </Typography>
       </Box>
     </Container>

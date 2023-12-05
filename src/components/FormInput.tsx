@@ -17,10 +17,10 @@ const Input = styled(_Input)`
 
 type IFormInputProps = {
   name: string;
-  label: string;
+  label?: string;
 } & InputProps;
 
-const FormInput: FC<IFormInputProps> = ({ name, label, ...otherProps }) => {
+const FormInput: FC<IFormInputProps> = ({ name, ...otherProps }) => {
   const {
     control,
     formState: { errors },
@@ -33,17 +33,11 @@ const FormInput: FC<IFormInputProps> = ({ name, label, ...otherProps }) => {
       name={name}
       render={({ field }) => (
         <FormControl fullWidth sx={{ mb: 2 }}>
-          <Typography
-            variant='body2'
-            sx={{ color: '#2363eb', mb: 1, fontWeight: 500 }}
-          >
-            {label}
-          </Typography>
+  
           <Input
             {...field}
             fullWidth
             disableUnderline
-            sx={{ borderRadius: '1rem' }}
             error={!!errors[name]}
             {...otherProps}
           />

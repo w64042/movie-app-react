@@ -3,11 +3,15 @@ import { LoginInput } from '../pages/login.page';
 import { RegisterInput } from '../pages/register.page';
 import { GenericResponse, ILoginResponse, IUserResponse } from './types';
 
-const BASE_URL = 'http://localhost:8000/api/';
+const BASE_URL = 'http://localhost:8000/';
 
 export const authApi = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
+  // add to every request bearer token from user
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+  },
 });
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
@@ -42,7 +46,10 @@ export const signUpUserFn = async (user: RegisterInput) => {
 };
 
 export const loginUserFn = async (user: LoginInput) => {
-  const response = await authApi.post<ILoginResponse>('auth/login', user);
+  user.grant_type = 'password';
+  user.client_id = '9948e82b-c746-420d-80de-eb28bd7c7f98';
+  user.client_secret = '4jACmIAMAZzX9gktRphGk2LDyjlOPD9Xk3UMvGXM';
+  const response = await authApi.post<ILoginResponse>('oauth/token', user);
   return response.data;
 };
 
@@ -59,6 +66,6 @@ export const logoutUserFn = async () => {
 };
 
 export const getMeFn = async () => {
-  const response = await authApi.get<IUserResponse>('users/me');
+  const response = await authApi.get<IUserResponse>('api/v1/users/1');
   return response.data;
 };

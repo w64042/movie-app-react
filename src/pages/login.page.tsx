@@ -14,12 +14,13 @@ import { useStateContext } from '../context';
 
 const LoadingButton = styled(_LoadingButton)`
   padding: 0.6rem 0;
-  background-color: #f9d13e;
-  color: #2363eb;
+  background-color: #1b1b1b;
+  color: #f1f1f1;
   font-weight: 500;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: #ebc22c;
+    background-color: #1b1b1b;
     transform: translateY(-2px);
   }
 `;
@@ -33,13 +34,14 @@ const LinkItem = styled(Link)`
 `;
 
 const loginSchema = object({
-  email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
+  username: string()
+    .min(1, 'Email jest wymagany')
+    .email('Email jest niepoprawny'),
   password: string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
+    .min(1, 'Hasło jest wymagane'),
+  grant_type: string(),
+  client_id: string(),
+  client_secret: string(),
 });
 
 export type LoginInput = TypeOf<typeof loginSchema>;
@@ -70,8 +72,10 @@ const LoginPage = () => {
   const { mutate: loginUser, isLoading } = useMutation(
     (userData: LoginInput) => loginUserFn(userData),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {        
         query.refetch();
+        localStorage.setItem('access_token', data.access_token);
+        
         toast.success('You successfully logged in');
         navigate(from);
       },
@@ -107,6 +111,7 @@ const LoginPage = () => {
   const onSubmitHandler: SubmitHandler<LoginInput> = (values) => {
     // Executing the loginUser Mutation
     loginUser(values);
+
   };
 
   return (
@@ -117,7 +122,7 @@ const LoginPage = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        backgroundColor: '#2363eb',
+        backgroundColor: '#1b1b1b',
       }}
     >
       <Box
@@ -132,19 +137,19 @@ const LoginPage = () => {
           textAlign='center'
           component='h1'
           sx={{
-            color: '#f9d13e',
+            color: '#F2F2F2',
             fontWeight: 600,
-            fontSize: { xs: '2rem', md: '3rem' },
-            mb: 2,
-            letterSpacing: 1,
+            fontSize: { xs: '3rem', md: '3.5rem' },
+            mb: 1,
+            letterSpacing: 4,
           }}
         >
           Dobrze Cię widzieć 👋
         </Typography>
         <Typography
-          variant='body1'
+          variant='subtitle1'
           component='h2'
-          sx={{ color: '#e5e7eb', mb: 2 }}
+          sx={{ color: '#F2F2F2', mb: 1 }}
         >
           Przejdźmy do logowania
         </Typography>
@@ -158,16 +163,19 @@ const LoginPage = () => {
             maxWidth='27rem'
             width='100%'
             sx={{
-              backgroundColor: '#e5e7eb',
+              backgroundColor: '#B1EDE8',
               p: { xs: '1rem', sm: '2rem' },
               borderRadius: 2,
             }}
           >
-            <FormInput name='email' label='Email' type='email' />
-            <FormInput name='password' label='Hasło' type='password' />
+            <FormInput name='username' label='Email' type='email' placeholder='Podaj swój email' />
+            <FormInput name='password' label='Hasło' type='password' placeholder='Podaj hasło' />
+            <FormInput name='grant_type' type='hidden' />
+            <FormInput name='client_id' type='hidden' />
+            <FormInput name='client_secret' type='hidden' />
 
             <Typography
-              sx={{ fontSize: '0.9rem', mb: '1rem', textAlign: 'right' }}
+              sx={{ fontSize: '1rem', mb: '1.125rem', textAlign: 'left' }}
             >
               <LinkItem to='/' style={{ color: '#333' }}>
                 Zapomniałeś hasła?
